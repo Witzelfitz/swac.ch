@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Details</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+    <div class="container detail-container">
+        <h1 id="system-name"></h1>
+        <div class="current-number-container">
+            <div id="current-number"></div>
+            <div id="current-number-label">Current Number</div>
+        </div>
+        <div class="qr-code-container">
+            <h2>Get a Ticket</h2>
+            <div id="qrCodeContainer"></div>
+        </div>
+        <div class="system-info">
+            <div class="info-item">
+                <h3>Average Wait Time</h3>
+                <p id="average-wait-time"></p>
+            </div>
+            <div class="info-item">
+                <h3>Last Updated</h3>
+                <p id="last-updated"></p>
+            </div>
+        </div>
+        <div id="waiting-tickets"></div>
+        <a href="index.html" class="back-link">Back to Systems</a>
+        <!-- Sound controls will be inserted here by JavaScript -->
+    </div>
+    <aside>
+        
+    </aside>
+    <script src="js/detail.js"></script>
+</body>
+</html>

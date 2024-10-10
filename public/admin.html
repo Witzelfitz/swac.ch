@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - System Details</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+    <div class="container admin-container">
+        <h1 id="system-name"></h1>
+        <div class="current-number-container">
+            <div id="current-number"></div>
+            <div id="current-number-label">Current Number</div>
+        </div>
+        <div class="admin-controls">
+            <button id="next-button" class="admin-button gigantic">Next</button>
+            <!-- add a copy pasete link textbox -->
+            <input type="text" id="copy-paste-link" readonly>
+            <button id="copy-button">Copy Link - Don't Share with Customers</button>
+            <h3>Deactivate the system to stop the queue</h3>
+            <button id="toggle-active-button" class="admin-button">Activate/Deactivate</button>
+            <button id="delete-system-button" class="admin-button">Delete System</button>
+
+        </div>
+        <div class="system-info">
+            <div class="info-item">
+                <h3>Average Wait Time</h3>
+                <p id="average-wait-time"></p>
+            </div>
+            <div class="info-item">
+                <h3>Last Updated</h3>
+                <p id="last-updated"></p>
+            </div>
+        </div>
+        <div id="waiting-tickets"></div>
+        <a href="index.html" class="back-link">Back to Systems</a>
+    </div>
+    <script src="js/admin.js"></script>
+</body>
+</html>
