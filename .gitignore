@@ -2,3 +2,5 @@ node_modules
 service.conf
 .DS_Store
 .env
+default.err
+default.log
