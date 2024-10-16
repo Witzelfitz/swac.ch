@@ -1,3 +1,5 @@
+let systemName; // Add this line at the top of the file, outside any function
+
 document.addEventListener('DOMContentLoaded', function() {
     const urlParams = new URLSearchParams(window.location.search);
     const ticketId = urlParams.get('id');
@@ -18,10 +20,7 @@ function fetchTicketDetails(ticketId) {
             return response.json();
         })
         .then(ticket => {
-            updateTicketDetails(ticket);
-            if (ticket.status === 'waiting') {
-                pollTicketStatus(ticketId);
-            }
+            fetchSystemDetails(ticket.systemId, ticket);
         })
         .catch(error => {
             console.error('Error details:', error);
@@ -29,8 +28,29 @@ function fetchTicketDetails(ticketId) {
         });
 }
 
-function updateTicketDetails(ticket) {
-    document.getElementById('ticket-id').innerText = ticket._id;
+function fetchSystemDetails(systemId, ticket) {
+    fetch(`/api/systems/${systemId}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            systemName = data.system.name; // Store the system name
+            updateTicketDetails(ticket, systemName);
+            if (ticket.status === 'waiting') {
+                pollTicketStatus(ticket._id);
+            }
+        })
+        .catch(error => {
+            console.error('Error details:', error);
+            showError('Error loading system', `Unable to fetch system details. Error: ${error.message}`);
+        });
+}
+
+function updateTicketDetails(ticket, systemName) {
+    document.getElementById('system-name').innerText = systemName;
     document.getElementById('current-number').innerText = ticket.number;
     document.getElementById('ticket-status').innerText = ticket.status;
     document.getElementById('ticket-created-at').innerText = formatDate(new Date(ticket.createdAt));
@@ -47,7 +67,7 @@ function pollTicketStatus(ticketId) {
             .then(response => response.json())
             .then(ticket => {
                 if (ticket.status === 'served') {
-                    updateTicketDetails(ticket);
+                    updateTicketDetails(ticket, systemName); // Use the stored systemName
                     clearInterval(pollTicketStatus);
                 }
             })
@@ -56,7 +76,7 @@ function pollTicketStatus(ticketId) {
 }
 
 function showError(title, message) {
-    document.getElementById('ticket-id').innerText = 'Error';
+    document.getElementById('system-name').innerText = 'Error';
     document.getElementById('current-number').innerText = 'N/A';
     document.getElementById('ticket-status').innerText = 'N/A';
     document.getElementById('ticket-created-at').innerText = 'N/A';

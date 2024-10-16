@@ -155,7 +155,9 @@ async function calculateAverageWaitTime(systemId) {
         status: 'served',
         servedAt: { $exists: true },
         createdAt: { $exists: true }
-    });
+    })
+    .sort('-servedAt')  // Sort by servedAt in descending order
+    .limit(10);  // Limit to the 10 most recent tickets
 
     if (servedTickets.length === 0) return 0;
 
