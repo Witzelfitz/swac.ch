@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swiss Ticket System - States</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1><b>S</b>ystem für <b>W</b>artezeiten- und <b>A</b>ufruf<b>c</b>ontrolle</h1>
+        <h2>Verfügbare Kurse</h2>
+        <div id="state-list"></div>
+
+        <h2>Neuen Kursraum anlegen</h2>
+        <form id="new-state-form">
+            <label for="name">Name des Kursraums:</label>
+            <input type="text" id="name" name="name" required>
+            <button type="submit">Kursraum anlegen</button>
+        </form>
+    </div>
+
+    <script src="js/state.js"></script>
+</body>
+</html>

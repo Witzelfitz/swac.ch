@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Details</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+    <div class="container detail-container">
+        <h1 id="state-name"></h1>
+        <div class="state-info">
+            <div class="info-item">
+                <h3>Status</h3>
+                <p id="state-status"></p>
+            </div>
+            <div class="info-item">
+                <h3>Last Updated</h3>
+                <p id="last-updated"></p>
+            </div>
+        </div>
+        <div id="students-list">
+            <h2>Students</h2>
+            <table id="students-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Status</th>
+                        <th>Wished Speed</th>
+                        <th>Course Happiness</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Student rows will be inserted here by JavaScript -->
+                </tbody>
+            </table>
+        <div id="add-student-form">
+            <h3>Add New Student</h3>
+            <form id="new-student-form">
+                <input type="text" id="student-name" placeholder="Enter student name" required>
+                <button type="submit" class="admin-button">Add Student</button>
+            </form>
+        </div>
+        </div>
+        <a href="index.html" class="back-link">Back to States</a>
+    </div>
+    <script src="js/course.js"></script>
+</body>
+</html>

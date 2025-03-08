@@ -7,6 +7,8 @@ import { dirname } from 'path';
 import { createServer } from 'http';
 import { systemsRouter } from './routes/systems.js';
 import { ticketsRouter } from './routes/tickets.js';
+import { statesRouter } from './routes/states.js';
+import { studentsRouter } from './routes/students.js';
 import { Server } from 'socket.io';
 import cors from 'cors';
 
@@ -52,7 +54,8 @@ app.get('/api/', (req, res) => {
 
 app.use('/api/systems', systemsRouter);
 app.use('/api/tickets', ticketsRouter);
-
+app.use('/api/states', statesRouter);
+app.use('/api/students', studentsRouter);
 // Export io for use in other files
 export { io };
 
